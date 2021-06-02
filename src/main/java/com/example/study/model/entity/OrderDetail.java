@@ -1,5 +1,6 @@
 package com.example.study.model.entity;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,27 +14,26 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class User {
+public class OrderDetail {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
-
-  private String account;
-
-  private String password;
-
-  private String email;
+  public Long id;
 
   private String status;
 
-  private String phoneNumber;
+  private LocalDate arrivalDate;
 
   private LocalDateTime createdAt;
 
   private String createdBy;
 
-  private LocalDateTime updatedAt;
+  private Long orderGroupId;
 
-  private String updatedBy;
+  private Long userId;
+
+  private Long itemId;
+
+
+
 }

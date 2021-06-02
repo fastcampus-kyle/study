@@ -1,6 +1,5 @@
 package com.example.study.model.entity;
 
-import java.time.LocalDateTime;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,27 +12,20 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class User {
+public class Item {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  private String account;
+  private String name;
 
-  private String password;
+  private Integer price;
 
-  private String email;
+  private String content;
 
-  private String status;
+  private String title;
 
-  private String phoneNumber;
+  private Long partnerId;
 
-  private LocalDateTime createdAt;
-
-  private String createdBy;
-
-  private LocalDateTime updatedAt;
-
-  private String updatedBy;
 }
