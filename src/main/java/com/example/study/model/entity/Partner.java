@@ -1,40 +1,39 @@
 package com.example.study.model.entity;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
+@Data
 @Entity
-public class User {
+public class Partner {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  private String account;
-
-  private String password;
-
-  private String email;
+  private String name;
 
   private String status;
 
+  private String callCenter;
+
   private String phoneNumber;
 
-  private LocalDateTime registredAt;
+  private String businessNumber;
 
-  private LocalDateTime unregistredAt;
+  private String ceoName;
+
+  private LocalDateTime registeredAt;
+
+  private LocalDateTime unregisteredAt;
 
   private LocalDateTime createdAt;
 

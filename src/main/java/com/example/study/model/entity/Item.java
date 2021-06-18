@@ -1,5 +1,6 @@
 package com.example.study.model.entity;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -21,17 +22,27 @@ public class Item {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
+  private String status;
+
   private String name;
-
-  private Integer price;
-
-  private String content;
 
   private String title;
 
-  private Long partnerId;
+  private String content;
 
-  // 1 : N
-  @OneToMany(fetch = FetchType.EAGER, mappedBy = "item")
-  private List<OrderDetail> orderDetailList;
+  private Integer price;
+
+  private String brandNAme;
+
+  private LocalDateTime registeredAt;
+
+  private LocalDateTime unregisteredAt;
+
+  private LocalDateTime createdAt;
+
+  private String createdBy;
+
+  private LocalDateTime updatedAt;
+
+  private String updatedBy;
 }

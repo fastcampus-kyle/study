@@ -1,5 +1,6 @@
 package com.example.study.model.entity;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import javax.persistence.Entity;
@@ -16,7 +17,6 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@ToString(exclude = {"user", "item"})
 public class OrderDetail {
 
   @Id
@@ -27,20 +27,16 @@ public class OrderDetail {
 
   private LocalDate arrivalDate;
 
+  private Integer quantity;
+
+  private BigDecimal totalPrice;
+
   private LocalDateTime createdAt;
 
   private String createdBy;
 
-  private Long orderGroupId;
+  private LocalDateTime updatedAt;
 
-  // N : 1
-  @ManyToOne
-  private User user; // user_id
-
-  // N : 1
-  @ManyToOne
-  private Item item;
-
-
+  private String updatedBy;
 
 }
