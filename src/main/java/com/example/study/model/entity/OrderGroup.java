@@ -28,6 +28,8 @@ public class OrderGroup {
 
   private String revName;
 
+  private String paymentType;
+
   private BigDecimal totalPrice;
 
   private Integer totalQuantity;
@@ -43,5 +45,8 @@ public class OrderGroup {
   private LocalDateTime updatedAt;
 
   private String updatedBy;
+
+  private Long userId;
+
 
 }
