@@ -5,6 +5,7 @@ import com.example.study.model.entity.User;
 import java.time.LocalDateTime;
 import java.util.Optional;
 import javax.transaction.Transactional;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,29 +18,35 @@ public class UserRepositoryTest extends StudyApplicationTests {
 
   @Test
   public void create() {
+    String account = "Test01";
+    String password = "Test01";
+    String status = "REGISTERED";
+    String email = "Test01@gmail.com";
+    String phoneNumber = "010-1111-2222";
+    LocalDateTime registeredAt = LocalDateTime.now();
+    LocalDateTime createdAt = LocalDateTime.now();
+    String createdBy = "AdminServer";
+
     User user = new User();
-    user.setAccount("TestUser03");
-    user.setPassword("1234");
-    user.setStatus("status");
-    user.setEmail("TestUser01@gmail.com");
-    user.setPhoneNumber("010-111-3333");
-    user.setCreatedAt(LocalDateTime.now());
-    user.setCreatedBy("TestUser3");
+    user.setAccount(account);
+    user.setPassword(password);
+    user.setStatus(status);
+    user.setEmail(email);
+    user.setPhoneNumber(phoneNumber);
+    user.setRegisteredAt(registeredAt);
+    user.setCreatedAt(createdAt);
+    user.setCreatedBy(createdBy);
 
     User newUser = userRepository.save(user);
-    System.out.println("newUser : " + newUser);
+
+    Assert.assertNotNull(newUser);
   }
 
   @Test
   @Transactional
   public void read() {
-    Optional<User> user = userRepository.findByAccount("TestUser03");
-
-    user.ifPresent(selectUser -> {
-      selectUser.getOrderDetailList().stream().forEach(detail ->{
-        System.out.println(detail.getItem());
-      });
-    });
+    User user = userRepository.findFirstByPhoneNumberOrderByIdDesc("010-1111-2221");
+    Assert.assertNotNull(user);
   }
 
   @Test

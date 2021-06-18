@@ -32,9 +32,9 @@ public class User {
 
   private String phoneNumber;
 
-  private LocalDateTime registredAt;
+  private LocalDateTime registeredAt;
 
-  private LocalDateTime unregistredAt;
+  private LocalDateTime unregisteredAt;
 
   private LocalDateTime createdAt;
 

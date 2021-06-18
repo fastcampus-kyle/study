@@ -18,8 +18,6 @@ public class ItemRepositoryTest extends StudyApplicationTests {
     item.setName("노트북");
     item.setPrice(100000);
     item.setContent("삼성 노트북");
-    item.setTitle("타이틀");
-    item.setPartnerId(1L);
 
     Item newItem = itemRepository.save(item);
     Assertions.assertNotNull(newItem);
