@@ -32,7 +32,7 @@ public class Item {
 
   private Integer price;
 
-  private String brandNAme;
+  private String brandName;
 
   private LocalDateTime registeredAt;
 
@@ -45,4 +45,6 @@ public class Item {
   private LocalDateTime updatedAt;
 
   private String updatedBy;
+
+  private Long partnerId;
 }
