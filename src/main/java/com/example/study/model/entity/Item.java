@@ -7,15 +7,18 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@ToString(exclude = {"orderDetailList"})
 public class Item {
 
   @Id
@@ -46,5 +49,9 @@ public class Item {
 
   private String updatedBy;
 
-  private Long partnerId;
+  @ManyToOne
+  private Partner partner;
+
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "item")
+  private List<OrderDetail> orderDetailList;
 }
