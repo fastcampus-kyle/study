@@ -11,11 +11,13 @@ import javax.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@ToString(exclude = {"orderGroup"})
 public class User {
 
   @Id
@@ -43,4 +45,8 @@ public class User {
   private LocalDateTime updatedAt;
 
   private String updatedBy;
+
+  // User : OrderGroup = 1:N
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+  private List<OrderGroup> orderGroupList;
 }

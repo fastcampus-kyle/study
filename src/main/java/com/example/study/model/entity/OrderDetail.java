@@ -17,6 +17,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@ToString(exclude = {"orderGroup"})
 public class OrderDetail {
 
   @Id
@@ -41,5 +42,7 @@ public class OrderDetail {
 
   private Long itemId;
 
-  private Long orderGroupId;
+  @ManyToOne
+  private OrderGroup orderGroup;
+
 }
