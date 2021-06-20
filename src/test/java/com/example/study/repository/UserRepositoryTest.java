@@ -18,11 +18,11 @@ public class UserRepositoryTest extends StudyApplicationTests {
 
   @Test
   public void create() {
-    String account = "Test01";
-    String password = "Test01";
+    String account = "Test03";
+    String password = "Test03";
     String status = "REGISTERED";
     String email = "Test01@gmail.com";
-    String phoneNumber = "010-1111-2222";
+    String phoneNumber = "010-1111-3333";
     LocalDateTime registeredAt = LocalDateTime.now();
     LocalDateTime createdAt = LocalDateTime.now();
     String createdBy = "AdminServer";
@@ -34,8 +34,13 @@ public class UserRepositoryTest extends StudyApplicationTests {
     user.setEmail(email);
     user.setPhoneNumber(phoneNumber);
     user.setRegisteredAt(registeredAt);
-    user.setCreatedAt(createdAt);
-    user.setCreatedBy(createdBy);
+
+    User u = User.builder()
+        .account(account)
+        .password(password)
+        .status(status)
+        .email(email)
+        .build();
 
     User newUser = userRepository.save(user);
 
@@ -46,6 +51,7 @@ public class UserRepositoryTest extends StudyApplicationTests {
   @Transactional
   public void read() {
     User user = userRepository.findFirstByPhoneNumberOrderByIdDesc("010-1111-2222");
+
     user.getOrderGroupList().stream().forEach(orderGroup -> {
 
       System.out.println("-----주문묶음-----");
@@ -58,7 +64,8 @@ public class UserRepositoryTest extends StudyApplicationTests {
 
       orderGroup.getOrderDetailList().forEach(orderDetail -> {
         System.out.println("파트너사 이름 : " + orderDetail.getItem().getPartner().getName());
-        System.out.println("파트너사 카테고리 : " + orderDetail.getItem().getPartner().getCategory().getTitle());
+        System.out
+            .println("파트너사 카테고리 : " + orderDetail.getItem().getPartner().getCategory().getTitle());
         System.out.println("주문 상품 : " + orderDetail.getItem().getName());
         System.out.println("고객센터 번호 : " + orderDetail.getItem().getPartner().getCallCenter());
         System.out.println("주문의 상태 : " + orderDetail.getStatus());
