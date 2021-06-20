@@ -17,6 +17,8 @@ public class UserApiResponse {
 
   private String password;
 
+  private String email;
+
   private String status;
 
   private String phoneNumber;

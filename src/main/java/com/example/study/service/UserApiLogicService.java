@@ -1,10 +1,12 @@
 package com.example.study.service;
 
 import com.example.study.ifs.CrudInterface;
+import com.example.study.model.entity.User;
 import com.example.study.model.network.Header;
 import com.example.study.model.network.request.UserApiRequest;
 import com.example.study.model.network.response.UserApiResponse;
 import com.example.study.repository.UserRepository;
+import java.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +17,21 @@ public class UserApiLogicService implements CrudInterface<UserApiRequest, UserAp
   private UserRepository userRepository;
 
   @Override
-  public Header<UserApiResponse> create(UserApiRequest userApiRequest) {
-    return null;
+  public Header<UserApiResponse> create(Header<UserApiRequest> request) {
+    UserApiRequest userApiRequest = request.getData();
+
+    User user = User.builder()
+        .account(userApiRequest.getAccount())
+        .password(userApiRequest.getPassword())
+        .status("REGISTERED")
+        .phoneNumber(userApiRequest.getPhoneNumber())
+        .email(userApiRequest.getEmail())
+        .registeredAt(LocalDateTime.now())
+        .build();
+
+    User newUser = userRepository.save(user);
+
+    return response(newUser);
   }
 
   @Override
@@ -25,12 +40,26 @@ public class UserApiLogicService implements CrudInterface<UserApiRequest, UserAp
   }
 
   @Override
-  public Header<UserApiResponse> update(UserApiRequest userApiRequest) {
+  public Header<UserApiResponse> update(Header<UserApiRequest> userApiRequest) {
     return null;
   }
 
   @Override
   public Header delete(Long id) {
     return null;
+  }
+
+  private Header<UserApiResponse> response(User user) {
+    UserApiResponse userApiResponse = UserApiResponse.builder()
+        .id(user.getId())
+        .account(user.getAccount())
+        .password(user.getPassword())
+        .email(user.getEmail())
+        .status(user.getStatus())
+        .registeredAt(user.getRegisteredAt())
+        .unregisteredAt(user.getUnregisteredAt())
+        .build();
+
+    return Header.OK(userApiResponse);
   }
 }
