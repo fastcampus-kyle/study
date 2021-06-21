@@ -59,15 +59,20 @@ public class UserApiLogicService implements CrudInterface<UserApiRequest, UserAp
           .setUnregisteredAt(userApiRequest.getUnregisteredAt());
       return user;
     })
-    .map(user -> userRepository.save(user))
-    .map(user -> response(user))
-    .orElseGet(() -> Header.ERROR("데이터 없음"));
+        .map(user -> userRepository.save(user))
+        .map(user -> response(user))
+        .orElseGet(() -> Header.ERROR("데이터 없음"));
 
   }
 
   @Override
   public Header delete(Long id) {
-    return null;
+    Optional<User> optional = userRepository.findById(id);
+
+    return optional.map(user -> {
+      userRepository.delete(user);
+      return Header.OK();
+    }).orElseGet(() -> Header.ERROR("데이터 없음"));
   }
 
   private Header<UserApiResponse> response(User user) {
