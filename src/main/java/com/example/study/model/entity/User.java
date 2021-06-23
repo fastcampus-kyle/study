@@ -2,13 +2,9 @@ package com.example.study.model.entity;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
+
+import com.example.study.model.enumclass.UserStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -41,7 +37,8 @@ public class User {
 
   private String email;
 
-  private String status;
+  @Enumerated(EnumType.STRING)
+  private UserStatus status;
 
   private String phoneNumber;
 
