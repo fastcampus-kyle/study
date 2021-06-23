@@ -4,6 +4,8 @@ import com.example.study.StudyApplicationTests;
 import com.example.study.model.entity.OrderGroup;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+
+import com.example.study.model.enumclass.OrderType;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +19,6 @@ public class OrderGroupRepositoryTest extends StudyApplicationTests {
   public void create(){
     OrderGroup orderGroup = new OrderGroup();
     orderGroup.setStatus("COMPLETE");
-    orderGroup.setOrderType("ALL");
     orderGroup.setRevAddress("서울시 강남구");
     orderGroup.setRevName("홍길동");
     orderGroup.setPaymentType("CARD");

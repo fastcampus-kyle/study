@@ -19,7 +19,7 @@ public class OrderDetailRepositoryTest extends StudyApplicationTests {
     OrderDetail orderDetail = new OrderDetail();
 
     orderDetail.setStatus("WATTING");
-    orderDetail.setArrivalDate(LocalDate.now().plusDays(2));
+    orderDetail.setArrivalDate(LocalDateTime.now().plusDays(2));
     orderDetail.setQuantity(1);
     orderDetail.setTotalPrice(BigDecimal.valueOf(900000));
 //    orderDetail.setOrderGroupId(1L);

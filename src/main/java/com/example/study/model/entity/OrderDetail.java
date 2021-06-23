@@ -37,7 +37,7 @@ public class OrderDetail {
 
   private String status;
 
-  private LocalDate arrivalDate;
+  private LocalDateTime arrivalDate;
 
   private Integer quantity;
 

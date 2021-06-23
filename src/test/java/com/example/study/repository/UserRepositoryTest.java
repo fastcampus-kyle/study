@@ -5,6 +5,8 @@ import com.example.study.model.entity.User;
 import java.time.LocalDateTime;
 import java.util.Optional;
 import javax.transaction.Transactional;
+
+import com.example.study.model.enumclass.UserStatus;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
@@ -20,7 +22,7 @@ public class UserRepositoryTest extends StudyApplicationTests {
   public void create() {
     String account = "Test03";
     String password = "Test03";
-    String status = "REGISTERED";
+    UserStatus status = UserStatus.REGISTERED;
     String email = "Test01@gmail.com";
     String phoneNumber = "010-1111-3333";
     LocalDateTime registeredAt = LocalDateTime.now();
