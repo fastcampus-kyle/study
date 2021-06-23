@@ -47,7 +47,26 @@ public class OrderGroupApiLogicService implements CrudInterface<OrderGroupApiReq
 
     @Override
     public Header<OrderGroupApiResponse> update(Header<OrderGroupApiRequest> request) {
-        return null;
+        OrderGroupApiRequest body = request.getData();
+
+        return orderGroupRepository.findById(body.getId())
+                .map(orderGroup -> {
+                    orderGroup.setStatus(body.getStatus())
+                            .setOrderType(body.getOrderType())
+                            .setRevAddress(body.getRevAddress())
+                            .setRevName(body.getRevName())
+                            .setPaymentType(body.getPaymentType())
+                            .setTotalPrice(body.getTotalPrice())
+                            .setTotalQuantity(body.getTotalQuantity())
+                            .setOrderAt(body.getOrderAt())
+                            .setArrivalDate(body.getArrivalDate())
+                            .setUser(userRepository.getOne(body.getId()))
+                    ;
+                    return orderGroup;
+                })
+                .map(changeOrderGroup -> orderGroupRepository.save(changeOrderGroup))
+                .map(this::resposne)
+                .orElseGet(() -> Header.ERROR("데이터 없음"));
     }
 
     @Override
