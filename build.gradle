@@ -28,6 +28,8 @@ dependencies {
 
     testCompileOnly 'org.projectlombok:lombok:1.18.18'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.18'
+
+    compileOnly 'org.springframework.boot:spring-boot-starter-thymeleaf'
 }
 
 test {
